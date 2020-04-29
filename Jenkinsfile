@@ -82,9 +82,9 @@ pipeline {
 					//goal = install | compile		
 					// -T 5 means we can build modules in parallel using 5 Threads, we can scale this
 					if (isUnix()) {
-						bat "mvn clean ${goal} -B -DskipTests -Pbuild -T 5" 
+						sh "mvn clean ${goal} -B -DskipTests -Pbuild -T 5" 
 					} else {
-						sh "mvn clean ${goal} -B -DskipTests -Pbuild -T 5"
+						bat "mvn clean ${goal} -B -DskipTests -Pbuild -T 5"
 					}
 				}
 
