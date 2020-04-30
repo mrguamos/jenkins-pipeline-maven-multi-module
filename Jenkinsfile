@@ -31,7 +31,6 @@ pipeline {
 						else {
 							changes = bat(returnStdout: true, script: "git --no-pager diff origin/${CHANGE_TARGET} --name-only").trim().split()
 						}						
-						changes = bat(returnStdout: true, script: "git --no-pager diff origin/${CHANGE_TARGET} --name-only").trim().split()
 						//use compile goal instead of package if the trigger came from Pull Request. we dont want to create image for every pull request
 						goal = "compile"
 					} else if(currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause').size() > 0) { //check if triggered via User 'Build Now'
