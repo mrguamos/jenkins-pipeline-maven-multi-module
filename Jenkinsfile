@@ -27,11 +27,11 @@ pipeline {
 						//get changes via git diff so we can know which module should be built
 						if (isUnix()) {
 							changes = sh(returnStdout: true, script: "git --no-pager diff origin/${CHANGE_TARGET} --name-only").trim().split()
-							}
+						}
 						else {
 							changes = bat(returnStdout: true, script: "git --no-pager diff origin/${CHANGE_TARGET} --name-only").trim().split()
 						}						
-						//use compile goal instead of package if the trigger came from Pull Request. we dont want to create image for every pull request
+						//use compile goal instead of package if the trigger came from Pull Request. we dont want to package our module for every pull request
 						goal = "compile"
 					} else if(currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause').size() > 0) { //check if triggered via User 'Build Now'
 						echo "User Trigger"
